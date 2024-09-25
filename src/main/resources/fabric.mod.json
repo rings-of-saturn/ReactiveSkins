@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "reactive_skins",
+  "version": "${version}",
+  "name": "Reactive Skins",
+  "description": "A mod that changes skins dynamically based on your enviourment!",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/reactive_skins/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "rings_of_saturn.github.io.reactive_skins.client.ReactiveSkinsClient"
+    ],
+    "main": [
+      "rings_of_saturn.github.io.reactive_skins.ReactiveSkins"
+    ]
+  },
+  "mixins": [
+    "reactive_skins.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
