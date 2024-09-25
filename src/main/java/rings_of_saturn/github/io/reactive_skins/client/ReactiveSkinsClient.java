@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 public class ReactiveSkinsClient implements ClientModInitializer {
     public static final Logger LOGGER = LogManager.getLogger("Reactive Skins");
-    public static final String MOD_ID = "assets/reactive_skins";
+    public static final String MOD_ID = "reactiveskins";
 
     @Override
     public void onInitializeClient() {
