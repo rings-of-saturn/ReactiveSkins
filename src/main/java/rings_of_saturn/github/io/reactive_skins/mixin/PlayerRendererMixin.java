@@ -2,21 +2,34 @@ package rings_of_saturn.github.io.reactive_skins.mixin;
 
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.entity.PlayerEntityRenderer;
+import net.minecraft.client.texture.NativeImage;
 import net.minecraft.client.util.SkinTextures;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.ColorHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import rings_of_saturn.github.io.reactive_skins.client.ReactiveSkinsClient;
+import rings_of_saturn.github.io.reactive_skins.util.ImageUtil;
+import rings_of_saturn.github.io.reactive_skins.util.SkinTexturesUtil;
 
-import static rings_of_saturn.github.io.reactive_skins.client.ReactiveSkinsClient.MOD_ID;
+import javax.swing.*;
+import java.io.IOException;
 
 @Mixin(PlayerEntityRenderer.class)
 public class PlayerRendererMixin {
     @Inject(method = "getTexture(Lnet/minecraft/client/network/AbstractClientPlayerEntity;)Lnet/minecraft/util/Identifier;", at = @At("HEAD"), cancellable = true)
-    public void getTexture(AbstractClientPlayerEntity player, CallbackInfoReturnable<Identifier> cir){
-        cir.setReturnValue(Identifier.of(MOD_ID,"textures/skins/ros.png"));
+    public void getTexture(AbstractClientPlayerEntity player, CallbackInfoReturnable<Identifier> cir) throws IOException {
         SkinTextures skinTextures = player.getSkinTextures();
         
+        SkinTexturesUtil.saveImageFromSkinTextures(skinTextures, player);
+
+        SkinTexturesUtil.updateNativeImage(player);
+
+        if(SkinTexturesUtil.IdentifierFromName(player.getName()) != null) {
+//            ReactiveSkinsClient.LOGGER.info("Using Custom Texture");
+            cir.setReturnValue(SkinTexturesUtil.IdentifierFromName(player.getName()));
+        }
     }
 }
