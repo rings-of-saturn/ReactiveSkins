@@ -52,11 +52,11 @@ public class SkinTexturesUtil {
         return nameToID.get(stylePlayerName(name));
     }
 
-    public static void updateNativeImage(AbstractClientPlayerEntity player) {
+    public static void updateNativeImage(AbstractClientPlayerEntity player) throws IOException {
         NativeImageBackedTexture texture = nameToImage.get(stylePlayerName(player.getName()));
         if(texture != null && texture.getImage() != null){
             texture.load(client.getResourceManager());
-            updateTexture(texture, ImageUtil.modifySkin(texture.getImage(), player),stylePlayerName(player.getName()));
+            updateTexture(texture, ImageUtil.modifySkin(texture.getImage(), player, player.getSkinTextures().model().name().toLowerCase().contains("slim")), stylePlayerName(player.getName()));
         }
     }
 

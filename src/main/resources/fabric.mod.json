@@ -6,6 +6,7 @@
   "description": "A mod that changes skins dynamically based on your enviourment!",
   "authors": [],
   "contact": {},
+  "accessWidener" : "reactive_skins.accesswidener",
   "license": "MIT",
   "icon": "assets/reactive_skins/icon.png",
   "environment": "client",

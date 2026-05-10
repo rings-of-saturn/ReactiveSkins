@@ -2,16 +2,12 @@ package rings_of_saturn.github.io.reactive_skins.mixin;
 
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.entity.PlayerEntityRenderer;
-import net.minecraft.client.texture.NativeImage;
 import net.minecraft.client.util.SkinTextures;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.ColorHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import rings_of_saturn.github.io.reactive_skins.client.ReactiveSkinsClient;
-import rings_of_saturn.github.io.reactive_skins.util.ImageUtil;
 import rings_of_saturn.github.io.reactive_skins.util.SkinTexturesUtil;
 
 import javax.swing.*;
@@ -28,7 +24,6 @@ public class PlayerRendererMixin {
         SkinTexturesUtil.updateNativeImage(player);
 
         if(SkinTexturesUtil.IdentifierFromName(player.getName()) != null) {
-//            ReactiveSkinsClient.LOGGER.info("Using Custom Texture");
             cir.setReturnValue(SkinTexturesUtil.IdentifierFromName(player.getName()));
         }
     }
