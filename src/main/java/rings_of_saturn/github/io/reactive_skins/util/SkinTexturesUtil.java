@@ -48,8 +48,6 @@ public class SkinTexturesUtil {
                 NativeImage skinImage = NativeImage.read(stream.toByteArray());
                 NativeImageBackedTexture texture = textureToImage.get(stylePlayerName(player.getName()));
                 texture.image = skinImage;
-                texture.upload();
-                texture.bindTexture();
             }
         }
         return textureToImage.get(stylePlayerName(player.getName())).getImage();
