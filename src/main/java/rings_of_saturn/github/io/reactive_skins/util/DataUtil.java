@@ -3,6 +3,7 @@ package rings_of_saturn.github.io.reactive_skins.util;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.text.Text;
 import rings_of_saturn.github.io.reactive_skins.player.data.PlayerData;
 
 import java.util.HashMap;
@@ -25,7 +26,9 @@ public class DataUtil {
 
     public static void tickTimers(AbstractClientPlayerEntity player){
         getPlayerData(player).mudTimer = TimeUtil.tickTimer(getPlayerData(player).mudTimer);
-        getPlayerData(player).mudTimer = TimeUtil.tickTimer(getPlayerData(player).snowTimer);
+        getPlayerData(player).snowTimer = TimeUtil.tickTimer(getPlayerData(player).snowTimer);
+        player.sendMessage(Text.of(String.valueOf(getPlayerData(player).bedrockDust)));
+        player.sendMessage(Text.of(String.valueOf(getPlayerData(player).snowTimer)));
     }
 
     public static void updatePlayerData(AbstractClientPlayerEntity player){
@@ -33,7 +36,7 @@ public class DataUtil {
         if(player.getBlockPos().getY() < -50){
             getPlayerData(player).bedrockDust = true;
         }
-        if (player.getBlockPos().getY() == -45) {
+        if (player.getBlockPos().getY() > -45) {
             getPlayerData(player).bedrockDust = false;
         }
 

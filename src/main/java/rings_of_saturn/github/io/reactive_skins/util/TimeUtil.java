@@ -10,9 +10,6 @@ public class TimeUtil {
     }
 
     public static int tickTimer(int timer){
-        if(timer-- <= 0)
-            return timer;
-        else
-            return timer-1;
+        return Math.max(timer-1,0);
     }
 }
