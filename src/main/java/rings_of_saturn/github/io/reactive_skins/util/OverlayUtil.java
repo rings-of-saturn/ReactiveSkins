@@ -29,6 +29,11 @@ public class OverlayUtil {
                         MOD_ID, "skin_overlays/snow_slim.png"
                 )
         );
+        overlayIDs.put("mud",
+                Identifier.of(
+                        MOD_ID, "skin_overlays/mud.png"
+                )
+        );
     }
 
     public static NativeImage mergeOverlayWithImage(NativeImage baseImage, String overlay) throws IOException {

@@ -8,12 +8,40 @@ import net.minecraft.client.util.SkinTextures;
 import java.io.IOException;
 
 import static rings_of_saturn.github.io.reactive_skins.client.ReactiveSkinsClient.*;
-import static rings_of_saturn.github.io.reactive_skins.util.SkinTexturesUtil.refreshToSkinTextures;
 
 public class ImageUtil {
     public static NativeImage modifySkin(NativeImage image, AbstractClientPlayerEntity player, boolean slim, SkinTextures skinTextures) throws IOException {
         if(image != null) {
-            //return OverlayUtil.mergeOverlayWithImage(image, "snow", slim);
+            NativeImage returnImage = image;
+            if(
+                    DataUtil.getPlayerData(player).snowTimer >= 5
+            ) {
+                returnImage = OverlayUtil.mergeOverlayWithImage(image, "snow", slim);
+            }
+            if (
+                    DataUtil.getPlayerData(player).snowTimer == 1
+            ) {
+                returnImage = SkinTexturesUtil.refreshToSkinTextures(skinTextures, player);
+            }
+
+            if(
+                    DataUtil.getPlayerData(player).bedrockDust
+            ) {
+                returnImage = OverlayUtil.mergeOverlayWithImage(image, "bedrock");
+            }
+
+            if(
+                    DataUtil.getPlayerData(player).mudTimer >= 5
+            ) {
+                returnImage = OverlayUtil.mergeOverlayWithImage(image, "mud");
+            }
+            if (
+                    DataUtil.getPlayerData(player).mudTimer == 1
+            ) {
+                returnImage = SkinTexturesUtil.refreshToSkinTextures(skinTextures, player);
+            }
+
+            return returnImage;
         }
         return null;
     }

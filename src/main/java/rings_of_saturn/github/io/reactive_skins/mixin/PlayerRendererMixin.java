@@ -8,7 +8,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import rings_of_saturn.github.io.reactive_skins.util.DataUtil;
 import rings_of_saturn.github.io.reactive_skins.util.SkinTexturesUtil;
 
 import java.io.IOException;
@@ -22,7 +21,6 @@ public class PlayerRendererMixin {
         SkinTexturesUtil.saveImageFromSkinTextures(skinTextures, player);
 
         //update
-        DataUtil.updatePlayerData(player);
         SkinTexturesUtil.updateImage(player, skinTextures);
 
         if(SkinTexturesUtil.IdentifierFromName(player.getName()) != null) {

@@ -18,7 +18,7 @@ public class ReactiveSkinsClient implements ClientModInitializer {
     public void onInitializeClient() {
         initializeOverlays();
         ClientTickEvents.START_WORLD_TICK.register((world) -> {
-            world.getPlayers().forEach((DataUtil::tickTimers));
+            world.getPlayers().forEach((DataUtil::updatePlayerData));
         });
     }
 }

@@ -29,9 +29,13 @@ public class DataUtil {
         getPlayerData(player).snowTimer = TimeUtil.tickTimer(getPlayerData(player).snowTimer);
         player.sendMessage(Text.of(String.valueOf(getPlayerData(player).bedrockDust)));
         player.sendMessage(Text.of(String.valueOf(getPlayerData(player).snowTimer)));
+        player.sendMessage(Text.of(String.valueOf(getPlayerData(player).mudTimer)));
     }
 
     public static void updatePlayerData(AbstractClientPlayerEntity player){
+        //tickTimers
+        tickTimers(player);
+
         //bedrock
         if(player.getBlockPos().getY() < -50){
             getPlayerData(player).bedrockDust = true;
@@ -42,12 +46,12 @@ public class DataUtil {
 
         //snow
         if(!player.getWorld().getBiome(player.getBlockPos()).value().doesNotSnow(player.getBlockPos()) && player.getWorld().isRaining() && player.getWorld().isSkyVisible(player.getBlockPos())){
-            getPlayerData(player).snowTimer = TimeUtil.minutesInTicks(2);
+            getPlayerData(player).snowTimer = TimeUtil.minutesInTicks(2, true);
         }
 
         //mud
         if(player.getSteppingBlockState().getBlock() == Blocks.MUD || player.getSteppingBlockState().getBlock() == Blocks.MUDDY_MANGROVE_ROOTS){
-            getPlayerData(player).mudTimer = TimeUtil.secondsInTicks(30);
+            getPlayerData(player).mudTimer = TimeUtil.secondsInTicks(30, true);
         }
 
         if(player.getSteppingBlockState().getBlock() == Blocks.WATER || player.getSteppingBlockState().getBlock() == Blocks.WATER_CAULDRON){
